@@ -18,6 +18,8 @@ public class Plongee {
 	public int profondeur;
 
 	public int duree;
+        
+        public Set<Plongeur> participant;
 
 	public Plongee(Site lieu, Moniteur chefDePalanquee, LocalDate date, int profondeur, int duree) {
 		this.lieu = lieu;
@@ -28,8 +30,8 @@ public class Plongee {
 	}
 
 	public void ajouteParticipant(Plongeur participant) {
-		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		// méthode implémentée
+                this.participant.add(participant);
 	}
 
 	public LocalDate getDate() {
@@ -42,9 +44,12 @@ public class Plongee {
 	 * licence valide à la date de la plongée
 	 * @return vrai si la plongée est conforme
 	 */
-	public boolean estConforme() {
-		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
-	}
-
+	public boolean estConforme(){
+		// méthode implémentée
+		for (Plongeur p : participant)
+                {
+                    return !p.getLastLicence().estValide(this.getDate());
+                }      
+            return false;
+        }
 }
