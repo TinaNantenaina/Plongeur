@@ -23,8 +23,10 @@ public class Embauche {
      * @param dateFin la date à laquelle cette embauche est terminée
      */
     public void terminer(LocalDate dateFin) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");	    
+         // méthode implémenté
+        if(fin == null){
+            fin = dateFin;
+        }
     }
     
     /**
