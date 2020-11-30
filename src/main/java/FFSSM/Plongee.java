@@ -19,30 +19,37 @@ public class Plongee {
 
 	public int duree;
         
-        public Set<Plongeur> participant = new HashSet<>();
+        private Set<Plongeur> plongeurs;
         
        
 
 	public Plongee(Site lieu, Moniteur chefDePalanquee, LocalDate date, int profondeur, int duree) {
+        this.plongeurs = new HashSet<>();
 		this.lieu = lieu;
 		this.chefDePalanquee = chefDePalanquee;
 		this.date = date;
 		this.profondeur = profondeur;
 		this.duree = duree;
+                ajouteParticipant(chefDePalanquee);
                 
 	}
 
 	public void ajouteParticipant(Plongeur participant) {
 		// méthode implémentée
-                this.participant.add(participant);
+                if(!plongeurs.contains(participant)){
+                plongeurs.add(participant);
 	}
+        }
 
-	public LocalDate getDate() {
+	public Set<Plongeur> getPlongeurs() {
+             return plongeurs;
+        }
+        
+        public LocalDate getDate() {
 		return date;
 	}  
-         public Set<Plongeur> getParticipant() {
-             return participant;
-        }
+        
+         
         
 
 	/**
@@ -53,12 +60,13 @@ public class Plongee {
 	 */
 	public boolean estConforme(){
 		// méthode implémentée
-                
-		for (Plongeur plongeur : participant)
+                boolean conforme = true;
+		for (Plongeur plongeur : plongeurs)
                 {
-                    if (plongeur.getLastLicence(date)== null)
-                        return false; 
+                    if (!plongeur.maLicence.get(plongeur.maLicence.size()-1).estValide(this.getDate())){
+                        conforme = false; 
                 }  
-                return true;
         }
+                return conforme;
+}
 }

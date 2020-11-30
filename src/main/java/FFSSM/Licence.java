@@ -16,6 +16,8 @@ public class Licence {
     public int niveau;
 
     public Club club;
+    
+    public boolean valide;
 
     public Licence(Personne possesseur, String numero, LocalDate delivrance, int niveau, Club club) {
         this.possesseur = possesseur;
@@ -53,8 +55,14 @@ public class Licence {
      **/
     public boolean estValide(LocalDate d) {
          // méthode implémentée
+         
          return delivrance.isBefore(d.plusYears(1));
         
     }
+    
+    public void setValide(boolean b){
+        valide = b;
+    }
+            
 
 }

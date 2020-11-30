@@ -32,12 +32,13 @@ public class Club {
      * @return l'ensemble des plongées non conformes
      */
     public Set<Plongee> plongeesNonConformes() {
-         // méthode implémentée
+        // méthode implémentée
+        Set<Plongee> plongeeConforme = new HashSet<>();
         for(Plongee plongee : plongees){
             if(!plongee.estConforme())
-                    plongees.add(plongee);
+                    plongeeConforme.add(plongee);
         } 
-        return plongees;
+        return plongeeConforme;
     }
 
     /**
